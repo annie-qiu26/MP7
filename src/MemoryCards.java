@@ -2,10 +2,15 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Memory card class that implements the action listener class to make the grid responsive to clicks
+ * @author annieq2
+ *
+ */
 public class MemoryCards extends JButton implements ActionListener{
+	boolean hideme = true;
 	ImageIcon X,O;
-	byte value=0;
+	static int value=0;
 	/*
 	0:nothing
 	1:X
