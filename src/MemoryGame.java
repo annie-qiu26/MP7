@@ -52,17 +52,7 @@ public class MemoryGame extends JFrame{
 	 
 	public static void main(String args[]){
 		new MemoryGame();
-		if (MemoryCards.turnIndex == 0) {
-			System.out.println("this doesn't happen");
-			try        
-			{
-			    Thread.sleep(1000);
-			} 
-			catch(InterruptedException ex) 
-			{
-			    Thread.currentThread().interrupt();
-			}
-		}
+
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				System.out.print(MemoryCards.idBoard[i][j] + " ");
