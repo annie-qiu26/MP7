@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
  *
  */
 public class MemoryCards extends JButton implements ActionListener{
-	boolean hideme = false;
+	boolean hideme = true;
 	ImageIcon X,O;
 	static int value=0;
 	static int randomX = (int)(Math.random()*10);
@@ -16,7 +16,7 @@ public class MemoryCards extends JButton implements ActionListener{
 	static int[][] idBoard = new int[10][10];
 	int ID; 
 	int location;
-	static int pastIndex = -1;
+	static int pastLocation = -1;
 	
 	/*
 	0:nothing
@@ -38,10 +38,10 @@ public class MemoryCards extends JButton implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		//preventing player from hiding card by selecting card twice
-		if (pastIndex == this.location) {
+		if (pastLocation == this.location) {
 			return;
 		}
-		pastIndex = this.location;
+		pastLocation = this.location;
 		switch(this.ID){
 			case 0:
 				setIcon(O);
@@ -73,6 +73,13 @@ public class MemoryCards extends JButton implements ActionListener{
 			case 9:
 				setIcon(O);
 				break;
+		}
+	}
+	
+	public void compare(MemoryCards first, MemoryCards second) {
+		if (first.ID == second.ID) {
+			first.hideme = false;
+			second.hideme = false;
 		}
 	}
 }
