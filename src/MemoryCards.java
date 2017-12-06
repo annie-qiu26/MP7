@@ -16,7 +16,8 @@ public class MemoryCards extends JButton implements ActionListener{
 	static int[][] idBoard = new int[10][10];
 	int ID; 
 	int location;
-	static int pastLocation = -1;
+	static int turnIndex = 0;
+	static MemoryCards pastCard = null;
 	
 	/*
 	0:nothing
@@ -29,6 +30,7 @@ public class MemoryCards extends JButton implements ActionListener{
 			randomX = (int)(Math.random()*10);
 			randomY = (int)(Math.random()*10);
 		}
+		hideme = true;
 		idBoard[randomX][randomY] = value;
 		value++;
 		X=new ImageIcon(this.getClass().getResource("X.png"));
@@ -38,10 +40,13 @@ public class MemoryCards extends JButton implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e){
 		//preventing player from hiding card by selecting card twice
-		if (pastLocation == this.location) {
+		if (pastCard != null && pastCard.location == this.location) {
 			return;
 		}
-		pastLocation = this.location;
+		if (!this.hideme) {
+			return;
+		}
+		turnIndex++;
 		switch(this.ID){
 			case 0:
 				setIcon(O);
@@ -73,14 +78,29 @@ public class MemoryCards extends JButton implements ActionListener{
 			case 9:
 				setIcon(O);
 				break;
+		}	
+		if (pastCard != null) {
+			if (!this.compare(pastCard) && turnIndex == 2) {
+				pastCard.setIcon(null);
+				this.setIcon(null);
+			}
 		}
+		if (turnIndex == 2) {
+			turnIndex = 0;
+			pastCard = null;
+		}
+		pastCard = this;
+		
 	}
 	
-	public void compare(MemoryCards first, MemoryCards second) {
-		if (first.ID == second.ID) {
-			first.hideme = false;
-			second.hideme = false;
+	public boolean compare(MemoryCards past) {
+		if (this.ID == past.ID) {
+			System.out.println("Does this happen?");
+			this.hideme = false;
+			past.hideme = false;
+			return true;
 		}
+		return false;
 	}
 }
 
