@@ -9,23 +9,35 @@ import java.awt.GridLayout;
 public class MemoryGame extends JFrame{
 	JPanel p=new JPanel();
 	MemoryCards buttons[]=new MemoryCards[100];
-	static int randomX = (int)(Math.random()*10);
-	static int randomY = (int)(Math.random()*10);
-	static int[][] idBoard = new int[10][10];
-	int ID = 0;
 	
+	//shuffle the cards in the memory board
 	public void shuffle() {
 		p.setLayout(new GridLayout(10,10));
 		for(int i=0;i<100;i++){
 			buttons[i]=new MemoryCards();
+			buttons[i].location = i;
 			p.add(buttons[i]);
-			while(idBoard[randomX][randomY] != 0) {
-				randomX = (int)(Math.random()*10);
-				randomY = (int)(Math.random()*10);
-			}
-			idBoard[randomX][randomY] = ID;
-			ID++;
 		}
+		
+		for(int i = 0, j = 0; i<100; i++,j++) {
+			if (j == 10) {
+				System.out.println();
+				j = 0;
+			}
+			buttons[i].ID = MemoryCards.idBoard[i/10][j]/10;
+			System.out.print(buttons[i].ID + " ");
+		}
+		System.out.println();
+		System.out.println();
+		for(int i = 0, j = 0; i<100; i++,j++) {
+			if (j == 10) {
+				System.out.println();
+				j = 0;
+			}
+			System.out.print(buttons[i].location + " ");
+		}
+		System.out.println();
+		System.out.println();
 		add(p);
 	}
 	
@@ -42,7 +54,7 @@ public class MemoryGame extends JFrame{
 		new MemoryGame();
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				System.out.print(idBoard[i][j] + " ");
+				System.out.print(MemoryCards.idBoard[i][j] + " ");
 			}
 			System.out.println();
 		}
