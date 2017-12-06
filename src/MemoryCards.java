@@ -18,6 +18,8 @@ public class MemoryCards extends JButton implements ActionListener{
 	int location;
 	static int turnIndex = 0;
 	static MemoryCards pastCard = null;
+	static MemoryCards pastPastCard = null;
+	static boolean setNull = false;
 	
 	/*
 	0:nothing
@@ -45,6 +47,15 @@ public class MemoryCards extends JButton implements ActionListener{
 		}
 		if (!this.hideme) {
 			return;
+		}
+		if (turnIndex == 2) {
+			turnIndex = 0;
+			if (setNull == true) {
+				pastCard.setIcon(null);
+				pastPastCard.setIcon(null);
+				setNull = false;
+			}
+			pastCard = null;
 		}
 		turnIndex++;
 		switch(this.ID){
@@ -81,14 +92,10 @@ public class MemoryCards extends JButton implements ActionListener{
 		}	
 		if (pastCard != null) {
 			if (!this.compare(pastCard) && turnIndex == 2) {
-				pastCard.setIcon(null);
-				this.setIcon(null);
+				setNull = true;
+				pastPastCard = pastCard;
 			}
-		}
-		if (turnIndex == 2) {
-			turnIndex = 0;
-			pastCard = null;
-		}
+		} 
 		pastCard = this;
 		
 	}
