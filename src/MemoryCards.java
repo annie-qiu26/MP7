@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
  */
 public class MemoryCards extends JButton implements ActionListener{
 	boolean hideme = true;
-	ImageIcon X,O, icon1;
+	ImageIcon icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8, icon9, icon10;
 	static int value=0;
 	static int randomX = (int)(Math.random()*10);
 	static int randomY = (int)(Math.random()*10);
@@ -32,15 +32,26 @@ public class MemoryCards extends JButton implements ActionListener{
 		hideme = true;
 		idBoard[randomX][randomY] = value;
 		value++;
-		X=new ImageIcon(this.getClass().getResource("X.png"));
-		O=new ImageIcon(this.getClass().getResource("O.png"));
-		icon1 = new ImageIcon(this.getClass().getResource("icon-1.png"));
+		
+		//creates image icons for all the memory cards
+		icon1 = new ImageIcon(this.getClass().getResource("icon1.png"));
+		icon2 = new ImageIcon(this.getClass().getResource("icon2.png"));
+		icon3 = new ImageIcon(this.getClass().getResource("icon3.png"));
+		icon4 = new ImageIcon(this.getClass().getResource("icon4.png"));
+		icon5 = new ImageIcon(this.getClass().getResource("icon5.png"));
+		icon6 = new ImageIcon(this.getClass().getResource("icon6.png"));
+		icon7 = new ImageIcon(this.getClass().getResource("icon7.png"));
+		icon8 = new ImageIcon(this.getClass().getResource("icon8.png"));
+		icon9 = new ImageIcon(this.getClass().getResource("icon9.png"));
+		icon10 = new ImageIcon(this.getClass().getResource("icon10.png"));
 		this.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e){
+		//when all pairs are found, reset game
 		if (count == 100) {
-			System.out.println("Game is over!");	
+			System.out.println("\nGame is over!");	
+			System.out.println("\nGame is starting over!");
 			MemoryGame.reset();
 			return;
 		}
@@ -71,31 +82,31 @@ public class MemoryCards extends JButton implements ActionListener{
 				setIcon(icon1);
 				break;
 			case 1:
-				setIcon(X);
+				setIcon(icon2);
 				break;
 			case 2:
-				setIcon(O);
+				setIcon(icon3);
 				break;
 			case 3:
-				setIcon(icon1);
+				setIcon(icon4);
 				break;
 			case 4:
-				setIcon(O);
+				setIcon(icon5);
 				break;
 			case 5:
-				setIcon(icon1);
+				setIcon(icon6);
 				break;
 			case 6:
-				setIcon(O);
+				setIcon(icon7);
 				break;
 			case 7:
-				setIcon(icon1);
+				setIcon(icon8);
 				break;
 			case 8:
-				setIcon(O);
+				setIcon(icon9);
 				break;
 			case 9:
-				setIcon(O);
+				setIcon(icon10);
 				break;
 		}	
 		if (pastCard != null) {

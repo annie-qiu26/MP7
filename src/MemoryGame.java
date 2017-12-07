@@ -53,6 +53,7 @@ public class MemoryGame extends JFrame{
 		setVisible(true);
 	}	
 	
+	//resets the game
 	public static void reset() {
 		if (MemoryCards.count == 100) {
 			for (int i = 0; i < 100; i++) {
@@ -64,6 +65,7 @@ public class MemoryGame extends JFrame{
 	}
 	 
 	public static void main(String args[]){
+		//starts the game
 		new MemoryGame();
 		
 		//prints out the id's of each memory card
