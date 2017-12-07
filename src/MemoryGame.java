@@ -8,7 +8,7 @@ import java.awt.GridLayout;
  */
 public class MemoryGame extends JFrame{
 	JPanel p=new JPanel();
-	MemoryCards buttons[]=new MemoryCards[100];
+	static MemoryCards buttons[]=new MemoryCards[100];
 	
 	//shuffle the cards in the memory board
 	public void shuffle() {
@@ -19,6 +19,7 @@ public class MemoryGame extends JFrame{
 			p.add(buttons[i]);
 		}
 		
+		//prints the corresponding card in each tile of the grid
 		for(int i = 0, j = 0; i<100; i++,j++) {
 			if (j == 10) {
 				System.out.println();
@@ -29,6 +30,8 @@ public class MemoryGame extends JFrame{
 		}
 		System.out.println();
 		System.out.println();
+		
+		//prints out the location of each memory card with respect to the board
 		for(int i = 0, j = 0; i<100; i++,j++) {
 			if (j == 10) {
 				System.out.println();
@@ -49,16 +52,28 @@ public class MemoryGame extends JFrame{
 		shuffle();
 		setVisible(true);
 	}	
+	
+	public static void reset() {
+		if (MemoryCards.count == 100) {
+			for (int i = 0; i < 100; i++) {
+				buttons[i].setIcon(null);
+				buttons[i].hideme = true;
+			}
+		}
+		MemoryCards.count = 0;
+	}
 	 
 	public static void main(String args[]){
 		new MemoryGame();
-
+		
+		//prints out the id's of each memory card
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				System.out.print(MemoryCards.idBoard[i][j] + " ");
 			}
 			System.out.println();
 		}
+
 		
 	}
 }
