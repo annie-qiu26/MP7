@@ -23,8 +23,11 @@ public class MemoryCards extends JButton implements ActionListener{
 	static boolean setNull = false;
 	static boolean gameIsOver = false;
 
-	
+	/**
+	 * Constructor for MemoryCards
+	 */
 	public MemoryCards(){
+		//gives each MemoryCard a random id
 		while(idBoard[randomX][randomY] != 0) {
 			randomX = (int)(Math.random()*10);
 			randomY = (int)(Math.random()*10);
@@ -47,6 +50,9 @@ public class MemoryCards extends JButton implements ActionListener{
 		this.addActionListener(this);
 	}
 	
+	/**
+	 * @param e - represents the action of a click
+	 */
 	public void actionPerformed(ActionEvent e){
 		//when all pairs are found, reset game
 		if (count == 100) {
@@ -119,9 +125,15 @@ public class MemoryCards extends JButton implements ActionListener{
 		
 	}
 	
-	//compares if the cards are the same, and if same, they can't be hidden again
+	/**
+	 * 
+	 * @param past - previous memory card
+	 * @return true if the two cards are matching
+	 */
+	
 	public boolean compare(MemoryCards past) {
 		if (this.ID == past.ID) {
+			//can't hide the cards again
 			this.hideme = false;
 			past.hideme = false;
 			count+=2;
