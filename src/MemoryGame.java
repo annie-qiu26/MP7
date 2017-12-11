@@ -10,7 +10,9 @@ public class MemoryGame extends JFrame{
 	JPanel p=new JPanel();
 	static MemoryCards buttons[]=new MemoryCards[100];
 	
-	//shuffle the cards in the memory board
+	/**
+	 * Shuffle the cards in the memory board
+	 */
 	public void shuffle() {
 		p.setLayout(new GridLayout(10,10));
 		for(int i=0;i<100;i++){
@@ -53,7 +55,9 @@ public class MemoryGame extends JFrame{
 		setVisible(true);
 	}	
 	
-	//resets the game
+	/**
+	 * Resets the game
+	 */
 	public static void reset() {
 		if (MemoryCards.count == 100) {
 			for (int i = 0; i < 100; i++) {
@@ -63,7 +67,11 @@ public class MemoryGame extends JFrame{
 		}
 		MemoryCards.count = 0;
 	}
-	 
+	
+	/**
+	 * Main Method.
+	 * @param args
+	 */
 	public static void main(String args[]){
 		//starts the game
 		new MemoryGame();
